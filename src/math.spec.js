@@ -8,7 +8,7 @@ describe('math', function() {
   })
 
   describe('sum()', function() {
-    let result
+    let result: number
 
     beforeEach(() => {
       sandbox.spy(math, 'sum')
