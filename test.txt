@@ -1,9 +1,0 @@
-
-> node-base@0.0.1 start /Users/phz/workspace/learning/node-base
-> flow-node src/
-
-Invoice 53 at row 3 is not fully paid with 0 payment(s).
-Invoice 54 at row 4 is not fully paid with 0 payment(s).
-Invoice 52 at row 5 is overpaid with 1 payment(s) at row(s) [5].
-Invoice 52 at row 6 is overpaid with 1 payment(s) at row(s) [5].
-Invoice 51 at row 8 is overpaid with 1 payment(s) at row(s) [4].

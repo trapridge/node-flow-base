@@ -6,9 +6,16 @@ const sum = (sequence: NumberSequenceType = []): number => {
   return sequence.reduce((sum, num) => sum + num, 0)
 }
 
-const test = () => {}
+const multiply = (sequence: NumberSequenceType = []): number => {
+  return sequence.reduce((sum, num) => sum * num, 1)
+}
+
+const concat = (sequence: NumberSequenceType = []): string => {
+  return sequence.reduce((sum, num) => sum + num, '')
+}
 
 export default {
   sum,
-  test,
+  multiply,
+  concat,
 }

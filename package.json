@@ -3,15 +3,22 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
+    "build": "flow-remove-types --quiet --sourcemaps inline --all --out-dir dist/ src/",
+    "start-release": "npm run build && node dist/",
     "start": "flow-node src/",
-    "flow": "flow",
-    "lint": "eslint src/",
-    "mocha": "mocha -R spec -r flow-remove-types/register -r @std/esm --recursive --file test/config.js src/**/*.spec.js",
-    "coverage": "nyc npm run mocha",
-    "test": "npm run flow && npm run lint && npm run coverage"
+    "check": "flow && eslint src/",
+    "instrument": "nyc instrument src/ instrumented/",
+    "unflow-instrumented": "flow-remove-types --sourcemaps inline --all --out-dir instrumented/ instrumented/",
+    "test-instrumented": "nyc --exclude=**/*.spec.js --exclude=**/.*.js --all --instrument=false --reporter=text mocha -R spec -r @std/esm --recursive --file test/config.js instrumented/**/*.spec.js",
+    "test": "npm run instrument && npm run unflow-instrumented && npm run test-instrumented",
+    "test-watch": "mocha --watch -R spec -r flow-remove-types/register -r @std/esm --recursive --file test/config.js src/**/*.spec.js"
   },
   "author": "@trapridge",
   "license": "MIT",
+  "engines" : {
+    "node": "0.9.4",
+    "npm": "5.6.0"
+  },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
     "chai": "^4.1.2",
@@ -24,25 +31,10 @@
     "nyc": "^11.4.1",
     "prettier": "1.10.2",
     "sinon": "^4.2.2",
-    "sinon-chai": "^2.14.0"
-  },
-  "dependencies": {
-    "@std/esm": "^0.19.7",
-    "colors": "^1.1.2",
+    "sinon-chai": "^2.14.0",
     "flow-remove-types": "^1.2.3"
   },
-  "nyc": {
-    "include": [
-      "src/**/*.js"
-    ],
-    "exclude": [
-      "src/**/*.spec.js"
-    ],
-    "reporter": ["text", "html"],
-    "cache": false,
-    "instrument": true,
-    "source-maps": true,
-    "all": true,
-    "report-dir": "./coverage"
+  "dependencies": {
+    "@std/esm": "^0.19.7"
   }
 }
