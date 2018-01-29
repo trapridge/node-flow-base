@@ -9,7 +9,6 @@ What's included in the setup:
  * Prettier with recommended rules (through ESLint and with some opinionated overrides)
  * Babel with _env_ and _flow_ presets
  * Testing stack with mocha, Sinon, Chai, sinon-chai and nyc for coverage
- * Webstorm configs (tested with 2017.3.3)
 
 ## Usage
 
