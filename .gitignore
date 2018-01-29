@@ -61,8 +61,7 @@ typings/
 .next
 
 # jetbrains
-.idea/workspace.xml
-.idea/tasks.xml
+.idea
 
 # project
 dist
