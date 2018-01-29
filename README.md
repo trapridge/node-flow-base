@@ -4,31 +4,37 @@ Setup for modern JS development with Flow for node.js.
 
 What's included in the setup:
 
- * flow
- * eslint with recommended rules
- * prettier with recommended rules (through eslint and with some overrides)
- * esm/std (for ES6 modules without experimental flag or Babel)
- * testing with mocha, sinon, chai and nyc coverage
- * webstorm configs (tested with 2017.3.3)
+ * Flow
+ * ESLint with recommended rules
+ * Prettier with recommended rules (through ESLint and with some opinionated overrides)
+ * Babel with _env_ and _flow_ presets
+ * Testing stack with mocha, Sinon, Chai, sinon-chai and nyc for coverage
+ * Webstorm configs (tested with 2017.3.3)
 
 ## Usage
 
+### Prerequisites
+
+`npm install -g flow-typed` (optional)
+
+#### Setup
+
+`npm install`
+
+`flow-typed install` (optional)
+
 ### Run
 
-`npm start` (uses flow-node)
+`npm start` (for development)
 
-`npm run start-release` (removes Flow types and then runs)
+`npm run start:release` (for production)
 
 ### Test
 
-`npm test` (runs tests with coverage)
+`npm test` (runs type checking, linter and tests with coverage)
 
-`npm run test-watch` (runs tests in watch mode)
+`npm run watch:test` (runs tests in watch mode)
 
-`npm check` (starts flow and lints with eslint & prettier)
+`npm run watch:lint` (runs linter in watch mode)
 
-### Install Flow typedefs for dependencies
-
-`npm install -g flow-typed`
-
-`flow-typed install`
+`npm run watch:types` (runs type checking in watch mode)
