@@ -1,5 +1,6 @@
 /* @flow */
-/* eslint-disable */
+/* eslint-disable no-console */
 
-require = require('@std/esm')(module)
-module.exports = require('./main').default
+import math from './math'
+
+console.log(math.sum([0, 1, 2]))
