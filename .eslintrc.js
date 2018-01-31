@@ -5,6 +5,7 @@ module.exports = {
   },
   'plugins': [
     'flowtype',
+    'flowtype-errors',
     'prettier',
   ],
   'extends': [
@@ -13,6 +14,7 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   rules: {
+    "flowtype-errors/show-errors": 2,
     'prettier/prettier': ['error', {
       'singleQuote': true,
       'trailingComma': 'es5',
