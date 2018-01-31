@@ -12,7 +12,6 @@
     "test": "npm run flow && npm run lint && nyc --include=src --exclude=**/*.spec.js --reporter=text --reporter=html --all npm run mocha",
     "watch:test": "npm run mocha -- --watch --reporter=progress",
     "watch:lint": "esw -w src/",
-    "watch:types": "flow-watch",
     "watch": "run-p watch:test watch:lint"
   },
   "author": "@trapridge",
@@ -37,7 +36,6 @@
     "eslint-plugin-prettier": "^2.5.0",
     "eslint-watch": "^3.1.3",
     "flow-bin": "^0.64.0",
-    "flow-watch": "^1.1.1",
     "mocha": "^5.0.0",
     "npm-run-all": "^4.1.2",
     "nyc": "^11.4.1",
