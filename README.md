@@ -12,23 +12,19 @@ What's included in the setup:
 
 ## Usage
 
-### Prerequisites
-
-`npm install -g flow-typed` (optional)
-
 #### Setup
 
-`npm install`
+To install deps and set up Flow, run:
 
-`flow-typed install` (optional)
+`npm run setup`
 
-### Run
+### Running
 
 `npm start` (for development)
 
 `npm run start:release` (for production)
 
-### Test
+### Testing
 
 `npm test` (runs type checking, linter and tests with coverage)
 
