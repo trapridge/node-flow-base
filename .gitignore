@@ -64,6 +64,6 @@ typings/
 .idea
 
 # project
-dist
-instrumented
+build
 coverage
+flow-typed
