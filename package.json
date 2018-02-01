@@ -1,24 +1,22 @@
 {
   "name": "node-flow-base",
   "version": "0.0.2",
-  "description": "Development environment setup for node.js development with Flow",
+  "description": "Development environment setup for Node.js development with Flow",
   "scripts": {
     "setup:flow": "npm install -g flow-typed && flow-typed install && cp utils/flow-globals.js flow-typed/ && flow stop && flow start",
-    "setup": "npm install && npm run setup:flow",
     "build": "babel --quiet --source-maps=true src/ -d build/",
     "start": "babel-node src/",
     "start:release": "npm run build && node build/",
     "lint": "eslint src/",
-    "mocha": "mocha --require=babel-register -R spec --recursive --file utils/config.js",
-    "mocha:forbid": "mocha --forbid-pending --forbid-only --require=babel-register -R spec --recursive --file utils/config.js",
+    "mocha": "mocha --require=babel-register -R spec --recursive --file utils/test-config.js",
+    "mocha:forbid": "mocha --forbid-pending --forbid-only --require=babel-register -R spec --recursive --file utils/test-config.js",
     "test": "npm run mocha -- src/**/*.spec.js",
     "test:forbid": "npm run mocha:forbid -- src/**/*.spec.js",
     "test:build": "npm run mocha -- build/**/*.spec.js",
     "coverage": "nyc --include=src --exclude=**/*.spec.js --reporter=text --reporter=html --all npm test",
     "watch:test": "npm run test -- --watch --reporter=progress",
     "watch:lint": "esw -w src/",
-    "watch": "run-p watch:test watch:lint",
-    "hook": "./node_modules/mocha-only-hook/index.js"
+    "watch": "run-p watch:test watch:lint"
   },
   "author": "@trapridge",
   "license": "MIT",
@@ -48,12 +46,11 @@
     "nyc": "^11.4.1",
     "prettier": "1.10.2",
     "sinon": "^4.2.2",
-    "sinon-chai": "^2.14.0",
-    "mocha-only-hook": "file:utils/mocha-only-hook"
+    "sinon-chai": "^2.14.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "run-s test:forbid lint && flow check",
+      "pre-commit": "run-s test:forbid lint",
       "pre-push": "run-s build test:build"
     }
   }

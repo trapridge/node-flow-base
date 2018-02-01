@@ -1,22 +1,26 @@
 # node-flow-base
 
-Setup for modern JS development with Flow for node.js.
+Development environment setup for Node.js development with Flow.
 
 What's included in the setup:
 
- * Flow
- * ESLint with recommended rules
- * Prettier with recommended rules (through ESLint and with some opinionated overrides)
+ * Flow with global and dependency typedefs configured
+ * ESLint with recommended rules and Prettier and Flow plugins
+ * Pre-commit and pre-push Git hooks
  * Babel with _env_ and _flow_ presets
  * Testing stack with mocha, Sinon, Chai, sinon-chai and nyc for coverage
+
+Everything should be OS agnostic.
 
 ## Usage
 
 #### Setup
 
-To install deps and set up Flow, run:
+`npm install`
 
-`npm run setup`
+To set up Flow, run:
+
+`npm run setup:flow`
 
 ### Running
 
@@ -26,10 +30,12 @@ To install deps and set up Flow, run:
 
 ### Testing
 
-`npm test` (runs type checking, linter and tests with coverage)
+`npm test`
 
-`npm run watch:test` (runs tests in watch mode)
+To produce coverage report:
 
-`npm run watch:lint` (runs linter in watch mode)
+`npm run coverage`
 
-`npm run watch:types` (runs type checking in watch mode)
+To run tests and linter (ESLint, Prettier and Flow rules) continuously, run:
+
+`npm run watch`
