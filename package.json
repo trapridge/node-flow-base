@@ -10,7 +10,9 @@
     "start:release": "npm run build && node build/",
     "lint": "eslint src/",
     "mocha": "mocha --require=babel-register -R spec --recursive --file utils/config.js",
+    "mocha:forbid": "mocha --forbid-pending --forbid-only --require=babel-register -R spec --recursive --file utils/config.js",
     "test": "npm run mocha -- src/**/*.spec.js",
+    "test:forbid": "npm run mocha:forbid -- src/**/*.spec.js",
     "test:build": "npm run mocha -- build/**/*.spec.js",
     "coverage": "nyc --include=src --exclude=**/*.spec.js --reporter=text --reporter=html --all npm test",
     "watch:test": "npm run test -- --watch --reporter=progress",
@@ -51,7 +53,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "run-s hook test lint && flow check",
+      "pre-commit": "run-s test:forbid lint && flow check",
       "pre-push": "run-s build test:build"
     }
   }
