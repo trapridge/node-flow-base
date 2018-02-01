@@ -3,26 +3,35 @@
   "version": "0.0.2",
   "description": "Development environment setup for Node.js development with Flow",
   "scripts": {
-    "setup:flow": "npm install -g flow-typed && flow-typed install && cp utils/flow-globals.js flow-typed/ && flow stop && flow start",
+    "setup:flow": "flow-typed install && cp utils/flow-globals.js flow-typed/ && flow stop && flow start",
     "build": "babel --quiet --source-maps=true src/ -d build/",
     "start": "babel-node src/",
     "start:release": "npm run build && node build/",
     "lint": "eslint src/",
-    "mocha": "mocha --require=babel-register -R spec --recursive --file utils/test-config.js",
-    "mocha:forbid": "mocha --forbid-pending --forbid-only --require=babel-register -R spec --recursive --file utils/test-config.js",
-    "test": "npm run mocha -- src/**/*.spec.js",
-    "test:forbid": "npm run mocha:forbid -- src/**/*.spec.js",
-    "test:build": "npm run mocha -- build/**/*.spec.js",
-    "coverage": "nyc --include=src --exclude=**/*.spec.js --reporter=text --reporter=html --all npm test",
+    ":mocha": "mocha --opts .mochaopts",
+    ":mocha:forbid": "mocha --forbid-pending --forbid-only --opts .mochaopts",
+    "test": "npm run :mocha -- src/**/*.spec.js",
+    "test:build": "npm run :mocha -- build/**/*.spec.js",
+    "test:forbid": "npm run :mocha:forbid -- src/**/*.spec.js",
+    "coverage": "nyc npm test",
     "watch:test": "npm run test -- --watch --reporter=progress",
     "watch:lint": "esw -w src/",
     "watch": "run-p watch:test watch:lint"
   },
-  "author": "@trapridge",
+  "author": {
+    "name": "Juuso Ansaharju",
+    "email": "juuso@trapridge.me"
+  },
   "license": "MIT",
   "engines": {
     "node": "0.9.4",
     "npm": "5.6.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "run-s lint test:forbid",
+      "pre-push": "run-s build test:build"
+    }
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -40,6 +49,7 @@
     "eslint-plugin-prettier": "^2.5.0",
     "eslint-watch": "^3.1.3",
     "flow-bin": "^0.64.0",
+    "flow-typed": "^2.3.0",
     "husky": "^0.15.0-rc.3",
     "mocha": "^5.0.0",
     "npm-run-all": "^4.1.2",
@@ -47,11 +57,5 @@
     "prettier": "1.10.2",
     "sinon": "^4.2.2",
     "sinon-chai": "^2.14.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "run-s test:forbid lint",
-      "pre-push": "run-s build test:build"
-    }
   }
 }
